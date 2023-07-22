@@ -1,0 +1,46 @@
+.flex-container {
+    flex-flow: column nowrap;
+    -webkit-box-pack: start;
+    place-content: stretch flex-start;
+    margin-bottom: 32px;
+    padding-left: 24px;
+    padding-right: 24px;
+    align-items: center;
+}
+
+.login-button {
+    border-radius: 60px;
+    background: #57c190;
+    box-shadow: 33px 33px 66px #4aa47a, -33px -33px 66px #64dea6;
+}
+
+
+.login-container-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 16px;
+    padding-top: 24px;
+}
+
+.login-card {
+    border-radius: 12px;
+    box-shadow: 0px 4px 24px 5px rgba(0, 0, 0, 0.08), 0px 24px 60px 10px rgba(0, 0, 0, 0.12);
+    max-width: 400px;
+    flex: 1;
+    background: rgb(255, 255, 255)
+}
+
+.login-btn-row {
+    margin-top: 32px
+}
+
+.btn {
+    width: 100%;
+    background: #2de38e;
+    border-color: #2de38e
+}
+
+.mt-24 {
+    margin-top: 24px
+}
