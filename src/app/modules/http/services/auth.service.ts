@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ApiService } from "./api.service";
-import { AccessTokenResponse } from "../../shared/domain/identity/accessToken";
+import {
+  AccessTokenRequest,
+  AccessTokenResponse,
+} from "../../shared/domain/identity/accessToken";
 import { AppUser } from "../../shared/domain/user/appUser";
 
 @Injectable({
@@ -9,7 +12,7 @@ import { AppUser } from "../../shared/domain/user/appUser";
 })
 export class AuthService {
   user: AppUser | undefined;
-  private loggedIn = new BehaviorSubject<boolean>(false); // {1}
+  public loggedIn = new BehaviorSubject<boolean>(false); // {1}
   constructor(private apiService: ApiService) {}
   getAuthToken() {
     return sessionStorage.getItem("access_token");
@@ -22,16 +25,18 @@ export class AuthService {
   }
 
   get isLoggedIn$() {
+    if (sessionStorage.getItem("access_token")) {
+      this.loggedIn.next(true);
+    }
     return this.loggedIn.asObservable(); // {2}
   }
 
   public login$(
-    usernameOrEmail: string,
-    password: string
+    accessTokenRequest: AccessTokenRequest
   ): Observable<AccessTokenResponse> {
     return this.apiService.post$<AccessTokenResponse>("/v1/oauth/login", {
-      emailOrUsername: usernameOrEmail,
-      password: password,
+      emailOrUsername: accessTokenRequest.emailOrUserName,
+      password: accessTokenRequest.password,
     });
   }
 

@@ -1,7 +1,7 @@
 import { AppUser } from "../user/appUser";
 
 export interface AccessTokenRequest {
-  emailOrUsername: string;
+  emailOrUserName: string;
   password: string;
 }
 
