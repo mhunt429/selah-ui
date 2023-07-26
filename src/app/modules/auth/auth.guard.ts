@@ -13,6 +13,19 @@ export function authGuard() {
         return true;
       } else {
         //On refresh check the session
+        if (sessionStorage.getItem("access_token")) {
+          return authService.refreshUser$().subscribe({
+            next: user => {
+              authService.loggedIn.next(true);
+              authService.setUser(user);
+              return true;
+            },
+            error: () => {
+              router.navigate(["/login"]);
+              return false;
+            },
+          });
+        }
         router.navigate(["/login"]);
         return false;
       }

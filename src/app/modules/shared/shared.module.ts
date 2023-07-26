@@ -1,10 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { NavigationComponent } from "./components/navigation/navigation.component";
+
+import { LoaderComponent } from "./components/loader/loader.component";
 
 @NgModule({
-  declarations: [NavigationComponent],
   imports: [CommonModule],
-  exports: [NavigationComponent],
+  declarations: [LoaderComponent],
+  exports: [LoaderComponent],
 })
 export class SharedModule {}

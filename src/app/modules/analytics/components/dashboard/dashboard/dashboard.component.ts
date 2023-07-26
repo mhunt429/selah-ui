@@ -6,7 +6,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./dashboard.component.css"],
 })
 export class DashboardComponent implements OnInit {
+  isLoading: boolean = false;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isLoading = true;
+  }
 }
