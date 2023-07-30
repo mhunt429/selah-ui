@@ -16,8 +16,8 @@ export function authGuard() {
         if (sessionStorage.getItem("access_token")) {
           return authService.refreshUser$().subscribe({
             next: user => {
-              authService.loggedIn.next(true);
               authService.setUser(user);
+              authService.loggedIn.next(true);
               return true;
             },
             error: () => {

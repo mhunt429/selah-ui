@@ -17,8 +17,8 @@ export class AuthService {
   getAuthToken() {
     return sessionStorage.getItem("access_token");
   }
-  getUser() {
-    return this.user;
+  getUser(): AppUser {
+    return JSON.parse(sessionStorage.getItem("app_user") || "{}") as AppUser;
   }
   setUser(user: AppUser) {
     this.user = user;

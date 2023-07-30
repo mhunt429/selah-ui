@@ -1,10 +1,10 @@
 export interface DashboardSummary {
-  recentTransactions: any[]; // Replace 'any' with the appropriate type for recentTransactions
-  upcomingTransactions: any[]; // Replace 'any' with the appropriate type for upcomingTransactions
+  recentTransactions: object[]; // Replace 'any' with the appropriate type for recentTransactions
+  upcomingTransactions: object[]; // Replace 'any' with the appropriate type for upcomingTransactions
   currentMonthSpending: TransactionSummary[];
   lastMonthSpending: TransactionSummary[];
   allocatedBudget: number;
-  portfolioSummary: any; // Replace 'any' with the appropriate type for portfolioSummary
+  portfolioSummary: object; // Replace 'any' with the appropriate type for portfolioSummary
   netWorthSummary: NetWorthSummary;
 }
 
