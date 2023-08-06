@@ -4,6 +4,9 @@ import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 
 import { NavigationComponent } from "./navigation.component";
+import { NgIconsModule } from "@ng-icons/core";
+import { RouterTestingModule } from "@angular/router/testing";
+import { CommonModule } from "@angular/common";
 
 describe("NavigationComponent", () => {
   let component: NavigationComponent;
@@ -12,6 +15,7 @@ describe("NavigationComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [NavigationComponent],
+      imports: [NgIconsModule, CommonModule],
     }).compileComponents();
   }));
 
