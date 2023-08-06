@@ -1,5 +1,6 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
-import { Chart, ChartConfiguration, registerables } from "chart.js";
+import { Component, Input, OnInit } from "@angular/core";
+import * as ApexCharts from "apexcharts";
+import { MultilineChart } from "../../../domain/charts/lineCharts";
 
 @Component({
   selector: "app-stacked-line-chart",
@@ -8,20 +9,84 @@ import { Chart, ChartConfiguration, registerables } from "chart.js";
 })
 export class StackedLineChartComponent implements OnInit {
   //TODO add strong typing to this
-  @Input() chartData: any;
   @Input() options: any;
-
-  public chart: Chart | undefined = undefined;
+  @Input()
+  chartData!: MultilineChart;
+  @Input() xAxisLabels: string[] = [];
 
   constructor() {}
   ngOnInit(): void {
-    Chart.register(...registerables);
-    Chart.defaults.scale.grid.display = false;
-    this.chart = new Chart("stacked-line", {
-      type: "line",
-      data: this.chartData,
-      options: this.options,
-    });
+    console.log(this.chartData.series);
+    const options = {
+      chart: {
+        height: "100%",
+        maxWidth: "100%",
+        type: "line",
+        fontFamily: "Inter, sans-serif",
+        dropShadow: {
+          enabled: false,
+        },
+        toolbar: {
+          show: false,
+        },
+      },
+      tooltip: {
+        enabled: true,
+        x: {
+          show: false,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        width: 6,
+      },
+      grid: {
+        show: true,
+        strokeDashArray: 4,
+        padding: {
+          left: 2,
+          right: 2,
+          top: -26,
+        },
+      },
+      series: this.chartData.series,
+      legend: {
+        show: false,
+      },
+
+      xaxis: {
+        categories: this.chartData.xAxisLabels,
+        labels: {
+          show: true,
+          style: {
+            fontFamily: "Inter, sans-serif",
+            cssClass: "text-xs font-normal fill-gray-500 dark:fill-gray-400",
+          },
+        },
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+      },
+      yaxis: {
+        show: false,
+      },
+    };
+
+    if (
+      document.getElementById("line-chart") &&
+      typeof ApexCharts !== "undefined"
+    ) {
+      const chart = new ApexCharts(
+        document.getElementById("line-chart"),
+        options
+      );
+      chart.render();
+    }
   }
   ngAfterViewInit(): void {}
 }

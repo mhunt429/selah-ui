@@ -3,7 +3,7 @@
   <div class="budget-container">01</div>
   <div class="comparison-summary">
     <app-stacked-line-chart
-      *ngIf="historicalsChartConfig != {}"
+      *ngIf="historicalsChartConfig"
       [chartData]="historicalsChartConfig"></app-stacked-line-chart>
   </div>
 </div>

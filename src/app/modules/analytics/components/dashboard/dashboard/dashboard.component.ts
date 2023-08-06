@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AnalyticsService } from "src/app/modules/http/services/analytics.service";
 import { DashboardSummary } from "src/app/modules/shared/domain/analytics/dashboardSummary";
+import { MultilineChart } from "src/app/modules/shared/domain/charts/lineCharts";
 
 @Component({
   selector: "app-dashboard",
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
     portfolioSummary: {},
   };
 
-  historicalsChartConfig: any = {};
+  historicalsChartConfig: MultilineChart | undefined = undefined;
   constructor(private analyticsService: AnalyticsService) {}
 
   ngOnInit() {
@@ -34,19 +35,21 @@ export class DashboardComponent implements OnInit {
         this.summary = summary;
 
         this.historicalsChartConfig = {
-          labels: summary.currentMonthSpending.map(
+          xAxisLabels: summary.currentMonthSpending.map(
             (_, index) => `Day ${index + 1}`
           ),
-          datasets: [
+          series: [
             {
-              label: "This Month",
+              name: "This Month",
               data: summary.currentMonthSpending.map(x => x.totalAmount),
-              borderColor: "rgb(255, 115, 105)",
+              color: "rgb(255, 115, 105)",
             },
             {
-              label: "LastMonth",
-              data: summary.lastMonthSpending.map(x => x.totalAmount),
-              borderColor: "rgb(8, 32, 67)",
+              name: "LastMonth",
+              data: summary.lastMonthSpending
+                .map(x => x.totalAmount)
+                .slice(0, summary.currentMonthSpending.length),
+              color: "rgb(8, 32, 67)",
             },
           ],
         };
