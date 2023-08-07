@@ -35,6 +35,8 @@ export class DashboardComponent implements OnInit {
         this.summary = summary;
 
         this.historicalsChartConfig = {
+          title: "Spending",
+          subtitle: "This month vs. last",
           xAxisLabels: summary.currentMonthSpending.map(
             (_, index) => `Day ${index + 1}`
           ),

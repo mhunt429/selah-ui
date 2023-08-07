@@ -1,9 +1,10 @@
 <app-loader *ngIf="isLoading"></app-loader>
 <div class="grid grid-cols-2 gap-4" *ngIf="!isLoading">
-  <div class="budget-container">01</div>
-  <div class="comparison-summary">
-    <app-stacked-line-chart
-      *ngIf="historicalsChartConfig"
-      [chartData]="historicalsChartConfig"></app-stacked-line-chart>
+  <div class="budget-container">
+    <div class="comparison-summary">
+      <app-stacked-line-chart
+        *ngIf="historicalsChartConfig"
+        [chartData]="historicalsChartConfig"></app-stacked-line-chart>
+    </div>
   </div>
 </div>

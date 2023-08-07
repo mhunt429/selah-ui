@@ -8,15 +8,10 @@ import { MultilineChart } from "../../../domain/charts/lineCharts";
   styleUrls: ["./stacked-line-chart.component.css"],
 })
 export class StackedLineChartComponent implements OnInit {
-  //TODO add strong typing to this
-  @Input() options: any;
-  @Input()
-  chartData!: MultilineChart;
-  @Input() xAxisLabels: string[] = [];
+  @Input() chartData!: MultilineChart;
 
   constructor() {}
   ngOnInit(): void {
-    console.log(this.chartData.series);
     const options = {
       chart: {
         height: "100%",
