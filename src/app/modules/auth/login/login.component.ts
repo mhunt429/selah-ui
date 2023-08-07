@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../../http/services/auth.service";
 import { FormBuilder } from "@angular/forms";
 import { AccessTokenRequest } from "../../shared/domain/identity/accessToken";
+import { AlertType } from "../../shared/components/alert/alert.component";
 
 @Component({
   selector: "app-login",
@@ -26,6 +27,9 @@ export class LoginComponent implements OnInit {
     this.titleService.setTitle("Selah | Sign In ");
   }
 
+  public get AlertType() {
+    return AlertType;
+  }
   ngOnInit() {}
 
   handleLogin() {

@@ -2,6 +2,11 @@
   <div class="login-card">
     <div class="flex-container">
       <div class="text-center py-4 text-lg hover:font-bold">Sign In</div>
+      <app-alert class="pb-4" [type]="AlertType.ERROR" *ngIf="loginErrorText"
+        ><div>
+          {{ loginErrorText }}
+        </div></app-alert
+      >
       <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
         <div class="mb-6">
           <label

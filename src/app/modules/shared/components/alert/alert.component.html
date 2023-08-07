@@ -1,0 +1,13 @@
+<div
+  #alert
+  class="alert"
+  [class.error]="type === AlertType.ERROR"
+  [class.success]="type === AlertType.SUCCESS"
+  [class.info]="type === AlertType.INFO">
+  <div
+    class="d-flex"
+    [class.flex-column]="!flexRow"
+    [class.align-items-center]="flexRow">
+    <ng-content></ng-content>
+  </div>
+</div>
