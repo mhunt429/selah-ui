@@ -5,4 +5,9 @@
       *ngIf="historicalsChartConfig"
       [chartData]="historicalsChartConfig"></app-stacked-line-chart>
   </div>
+  <div class="pt-32">
+    <app-donut-chart
+      *ngIf="transactionCategoriesChartConfig"
+      [chartData]="transactionCategoriesChartConfig"></app-donut-chart>
+  </div>
 </div>
