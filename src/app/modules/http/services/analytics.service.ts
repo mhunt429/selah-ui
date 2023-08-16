@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ApiService } from "./api.service";
 import { Observable } from "rxjs";
-import { DashboardSummary } from "../../shared/domain/analytics/dashboardSummary";
+import { DashboardSummary } from "../../shared/models/analytics/dashboardSummary";
 import { AuthService } from "./auth.service";
 
 @Injectable({

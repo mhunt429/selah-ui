@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "src/app/modules/http/services/analytics.service";
-import { DashboardSummary } from "src/app/modules/shared/domain/analytics/dashboardSummary";
-import { DonutChart } from "src/app/modules/shared/domain/charts/donutChart";
-import { MultilineChart } from "src/app/modules/shared/domain/charts/lineCharts";
+import { DashboardSummary } from "src/app/modules/shared/models/analytics/dashboardSummary";
+import { DonutChart } from "src/app/modules/shared/models/charts/donutChart";
+import { MultilineChart } from "src/app/modules/shared/models/charts/lineCharts";
 
 @Component({
   selector: "app-dashboard",

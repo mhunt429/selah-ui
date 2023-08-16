@@ -10,6 +10,7 @@ import { AnalyticsModule } from "./modules/analytics/analytics.module";
 import { NgIconsModule } from "@ng-icons/core";
 import { heroUsers } from "@ng-icons/heroicons/outline";
 import { AuthInterceptor } from "./modules/http/interceptors/auth.interceptor";
+import { AccountsModule } from "./modules/accounts/accounts.module";
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,6 +25,7 @@ import { AuthInterceptor } from "./modules/http/interceptors/auth.interceptor";
     AuthModule,
     MainLayoutModule,
     AnalyticsModule,
+    AccountsModule,
   ],
   providers: [
     {

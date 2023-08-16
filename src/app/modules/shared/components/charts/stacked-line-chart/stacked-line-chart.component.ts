@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import * as ApexCharts from "apexcharts";
-import { MultilineChart } from "../../../domain/charts/lineCharts";
+import { MultilineChart } from "../../../models/charts/lineCharts";
 
 @Component({
   selector: "app-stacked-line-chart",

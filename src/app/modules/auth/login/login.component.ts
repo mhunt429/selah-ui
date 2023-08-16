@@ -3,7 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { AuthService } from "../../http/services/auth.service";
 import { FormBuilder } from "@angular/forms";
-import { AccessTokenRequest } from "../../shared/domain/identity/accessToken";
+import { AccessTokenRequest } from "../../shared/models/identity/accessToken";
 import { AlertType } from "../../shared/components/alert/alert.component";
 
 @Component({

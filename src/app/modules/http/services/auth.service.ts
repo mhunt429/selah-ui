@@ -4,8 +4,8 @@ import { ApiService } from "./api.service";
 import {
   AccessTokenRequest,
   AccessTokenResponse,
-} from "../../shared/domain/identity/accessToken";
-import { AppUser } from "../../shared/domain/user/appUser";
+} from "../../shared/models/identity/accessToken";
+import { AppUser } from "../../shared/models/user/appUser";
 
 @Injectable({
   providedIn: "root",

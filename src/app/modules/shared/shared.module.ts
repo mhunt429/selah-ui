@@ -6,6 +6,7 @@ import { StackedLineChartComponent } from "./components/charts/stacked-line-char
 import { CardComponent } from "./components/card/card.component";
 import { AlertComponent } from "./components/alert/alert.component";
 import { DonutChartComponent } from "./components/charts/donut-chart/donut-chart.component";
+import { PagedTableComponent } from "./components/paged-table/paged-table.component";
 
 @NgModule({
   imports: [CommonModule],
@@ -15,6 +16,7 @@ import { DonutChartComponent } from "./components/charts/donut-chart/donut-chart
     CardComponent,
     AlertComponent,
     DonutChartComponent,
+    PagedTableComponent,
   ],
   exports: [
     LoaderComponent,
@@ -22,6 +24,7 @@ import { DonutChartComponent } from "./components/charts/donut-chart/donut-chart
     CardComponent,
     AlertComponent,
     DonutChartComponent,
+    PagedTableComponent,
   ],
 })
 export class SharedModule {}

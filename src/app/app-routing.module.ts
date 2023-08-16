@@ -4,6 +4,7 @@ import { LoginComponent } from "./modules/auth/login/login.component";
 import { authGuard } from "./modules/auth/auth.guard";
 import { AppComponent } from "./app.component";
 import { DashboardComponent } from "./modules/analytics/components/dashboard/dashboard.component";
+import { AccountsSummaryComponent } from "./modules/accounts/components/accounts-summary/accounts-summary.component";
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
         path: "dashboard",
         component: DashboardComponent,
       },
+      { path: "accounts", component: AccountsSummaryComponent },
     ],
   },
 ];

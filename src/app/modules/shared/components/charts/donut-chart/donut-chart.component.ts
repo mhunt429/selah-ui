@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { DonutChart } from "../../../domain/charts/donutChart";
+import { DonutChart } from "../../../models/charts/donutChart";
 import * as ApexCharts from "apexcharts";
 @Component({
   selector: "app-donut-chart",

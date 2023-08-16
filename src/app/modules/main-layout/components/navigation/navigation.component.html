@@ -107,7 +107,8 @@
     <ul class="space-y-2 font-medium">
       <li>
         <a
-          href="#"
+          [routerLink]="['/core/dashboard']"
+          routerLinkActive="active"
           class="flex items-center p-2 text-gray-900 rounded-lg text-white hover:bg-gray-700 group">
           <ng-icon name="heroChartBar"></ng-icon>
           <span class="ml-3">Dashboard</span>
@@ -115,7 +116,8 @@
       </li>
       <li>
         <a
-          href="#"
+          [routerLink]="['/core/accounts']"
+          routerLinkActive="active"
           class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
           <ng-icon name="bootstrapBank,"></ng-icon>
           <span class="flex-1 ml-3 whitespace-nowrap">Accounts</span>

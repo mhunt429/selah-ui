@@ -12,9 +12,13 @@ import {
   heroWallet,
 } from "@ng-icons/heroicons/outline";
 import { bootstrapBank } from "@ng-icons/bootstrap-icons";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppRoutingModule } from "src/app/app-routing.module";
 @NgModule({
   imports: [
     CommonModule,
+    BrowserModule,
+    AppRoutingModule,
     NgIconsModule.withIcons({
       heroChartBar,
       heroWallet,
