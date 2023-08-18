@@ -4,9 +4,10 @@ import { LoginComponent } from "./login/login.component";
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
+import { RegisterComponent } from "./register/register.component";
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

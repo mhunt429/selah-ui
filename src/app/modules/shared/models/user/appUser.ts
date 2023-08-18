@@ -6,3 +6,10 @@ export interface AppUser {
   lastName: string;
   dateCreated: Date;
 }
+
+export interface AppUserCreate {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}

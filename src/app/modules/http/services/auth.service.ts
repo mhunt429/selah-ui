@@ -5,7 +5,7 @@ import {
   AccessTokenRequest,
   AccessTokenResponse,
 } from "../../shared/models/identity/accessToken";
-import { AppUser } from "../../shared/models/user/appUser";
+import { AppUser, AppUserCreate } from "../../shared/models/user/appUser";
 
 @Injectable({
   providedIn: "root",
@@ -31,13 +31,19 @@ export class AuthService {
   public login$(
     accessTokenRequest: AccessTokenRequest
   ): Observable<AccessTokenResponse> {
-    return this.apiService.post$<AccessTokenResponse>("/v1/oauth/login", {
-      emailOrUsername: accessTokenRequest.emailOrUserName,
-      password: accessTokenRequest.password,
-    });
+    return this.apiService.post$<AccessTokenResponse>(
+      "/v1/oauth/login",
+      accessTokenRequest
+    );
   }
 
   public refreshUser$(): Observable<AppUser> {
     return this.apiService.get$<AppUser>(`/v1/oauth/current-user`);
+  }
+
+  public registerAccount$(
+    user: AppUserCreate
+  ): Observable<AccessTokenResponse> {
+    return this.apiService.post$<AccessTokenResponse>("/v1/users/", user);
   }
 }

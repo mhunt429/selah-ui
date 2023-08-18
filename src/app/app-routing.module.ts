@@ -5,11 +5,16 @@ import { authGuard } from "./modules/auth/auth.guard";
 import { AppComponent } from "./app.component";
 import { DashboardComponent } from "./modules/analytics/components/dashboard/dashboard.component";
 import { AccountsSummaryComponent } from "./modules/accounts/components/accounts-summary/accounts-summary.component";
+import { RegisterComponent } from "./modules/auth/register/register.component";
 
 const routes: Routes = [
   {
     path: "login",
     component: LoginComponent,
+  },
+  {
+    path: "register",
+    component: RegisterComponent,
   },
   {
     path: "",
