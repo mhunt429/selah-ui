@@ -15,6 +15,12 @@ export class AccountsSummaryComponent implements OnInit {
     "Current Balance",
     "Subtype",
   ];
+  addAccountBtnStyles: object = {
+    float: "right",
+    backgroundColor: "rgba(25, 210, 165, 0.5)",
+    color: "#414142",
+  };
+
   ngOnInit() {
     this.accountsService.getAccountsByUser$().subscribe({
       next: accounts => {
@@ -24,5 +30,9 @@ export class AccountsSummaryComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  addAccount() {
+    console.log("clicked!!");
   }
 }

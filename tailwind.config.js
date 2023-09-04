@@ -4,7 +4,10 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      "dark-primary": "#082043",
+      orange: {
+        primary: "#FF7369",
+        dark: "#FF685F",
+      },
     },
   },
   plugins: [require("flowbite/plugin")],
