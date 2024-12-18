@@ -1,46 +1,56 @@
-// src/components/Login.tsx
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
-import { Button, Input, VStack, Box } from "@chakra-ui/react";
+import { Button, Flex, Card, Stack } from "@chakra-ui/react";
 import { useState } from "react";
+import AppMainInput from "../shared/AppMainInput";
+import marginTopValue from "@/utilities/constants";
 
 const LoginComponent: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    // Handle login logic here
     console.log("Username:", username, "Password:", password);
-    // Call an API for authentication
   };
 
   return (
-    <Box p={4} maxW="sm" borderWidth={1} borderRadius="lg" boxShadow="lg">
-      <VStack>
-        <FormControl id="username" isRequired>
-          <FormLabel>Username</FormLabel>
-          <Input
-            id="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </FormControl>
+    <Flex justify="center" align="center" p={4}>
+      <Card.Root width="540px" p={4} marginTop={marginTopValue}>
+        <Card.Body gap="2">
+          <Stack>
+            <FormControl id="username" isRequired>
+              <FormLabel paddingBottom="8px">Username</FormLabel>
+              <AppMainInput
+                id="username"
+                type="text"
+                value={username}
+                onChange={setUsername}
+              />
+            </FormControl>
 
-        <FormControl id="password" isRequired>
-          <FormLabel>Password</FormLabel>
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </FormControl>
+            <div style={{ paddingTop: "16px" }} />
+            <FormControl id="password" isRequired>
+              <FormLabel paddingBottom="8px">Password</FormLabel>
+              <AppMainInput
+                id="password"
+                type="password"
+                value={password}
+                onChange={setPassword}
+              />
+            </FormControl>
 
-        <Button colorScheme="blue" onClick={handleLogin}>
-          Login
-        </Button>
-      </VStack>
-    </Box>
+            <div style={{ paddingTop: "16px" }} />
+            <Button
+              colorPalette="teal"
+              variant="solid"
+              onClick={handleLogin}
+              fontSize="16px"
+            >
+              Login
+            </Button>
+          </Stack>
+        </Card.Body>
+      </Card.Root>
+    </Flex>
   );
 };
 

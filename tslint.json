@@ -1,0 +1,22 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "rules": {
+    "no-console": true,
+    "no-debugger": true,
+    "curly": true,
+    "triple-equals": true,
+    "no-implicit-any": true,
+    "no-eval": true,
+    "semicolon": [true, "always"],
+    "no-trailing-whitespace": true,
+    "quotemark": [true, "single"],
+    "max-line-length": [true, 120],
+    "no-unused-expression": true,
+    "no-shadowed-variable": true,
+    "object-literal-sort-keys": false,
+    "@typescript-eslint/no-empty-object-type": "off"
+  },
+  "linterOptions": {
+    "exclude": ["node_modules/**/*.ts", "dist/**/*.ts"]
+  }
+}
