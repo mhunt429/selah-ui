@@ -7,11 +7,18 @@ type Props = {
     "info" | "warning" | "success" | "error" | "neutral" | undefined
   >;
   message: string;
+  onClose?: () => void;
 };
 
 const AppAlert: FC<Props> = (props) => {
   return (
-    <Alert marginBottom={"16px"} variant={"surface"} status={props.status}>
+    <Alert
+      onClose={props.onClose}
+      closable={true}
+      marginBottom={"16px"}
+      variant={"surface"}
+      status={props.status}
+    >
       {props.message}
     </Alert>
   );

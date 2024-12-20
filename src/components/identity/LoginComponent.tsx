@@ -39,6 +39,10 @@ const LoginComponent: React.FC = () => {
     }
   };
 
+  const handleErrorAlertClose = () => {
+    setShowLoginError(false);
+  };
+
   const marginTopValue = useBreakpointValue({
     base: "5%",
     md: "8%",
@@ -50,6 +54,7 @@ const LoginComponent: React.FC = () => {
       <Card.Root width="540px" p={4} marginTop={marginTopValue}>
         {showLoginError && (
           <AppAlert
+            onClose={handleErrorAlertClose}
             status="error"
             message="We were unable to sign you in. Please check your credentials and try again."
           />
