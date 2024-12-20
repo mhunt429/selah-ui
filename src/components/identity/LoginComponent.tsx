@@ -32,8 +32,6 @@ const LoginComponent: React.FC = () => {
         AccessTokenResponse,
         AccessTokenRequest
       >("identity/login", accessTokenRequest);
-      console.log("fuck!!");
-      console.log(tokenResponse.status);
     } catch (ex) {
       setShowLoginError(true);
     }
