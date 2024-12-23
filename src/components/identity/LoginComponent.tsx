@@ -1,11 +1,5 @@
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
-import {
-  Button,
-  Flex,
-  Card,
-  Stack,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Flex, Card, Stack, useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
 import AppMainInput from "../shared/AppMainInput";
 import {
@@ -14,10 +8,13 @@ import {
 } from "@/data/identity/accessToken";
 import api from "@/utilities/api";
 import AppAlert from "../shared/AppAlert";
+import { useNavigate } from "react-router-dom";
+import AppPrimaryButton from "../shared/AppPrimaryButton";
 
 const LoginComponent: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const [showLoginError, setShowLoginError] = useState(false);
 
@@ -27,16 +24,21 @@ const LoginComponent: React.FC = () => {
       password,
     };
 
-    try {
-      const tokenResponse = await api.post<
-        AccessTokenResponse,
-        AccessTokenRequest
-      >("identity/login", accessTokenRequest);
-    } catch (ex) {
-      setShowLoginError(true);
-    }
-  };
+    api
+      .post<AccessTokenResponse, AccessTokenRequest>(
+        "identity/login",
+        accessTokenRequest
+      )
+      .then((tokenResponse) => {
+        sessionStorage.setItem(
+          "app_user",
+          JSON.stringify(tokenResponse.data.user)
+        );
 
+        navigate("/home");
+      })
+      .catch(() => setShowLoginError(true));
+  };
   const handleErrorAlertClose = () => {
     setShowLoginError(false);
   };
@@ -84,14 +86,7 @@ const LoginComponent: React.FC = () => {
             </FormControl>
 
             <div style={{ paddingTop: "16px" }} />
-            <Button
-              colorPalette="teal"
-              variant="solid"
-              onClick={handleLogin}
-              fontSize="16px"
-            >
-              Login
-            </Button>
+            <AppPrimaryButton onClick={handleLogin} btnText="Login" />
           </Stack>
         </Card.Body>
       </Card.Root>

@@ -7,7 +7,7 @@ import type { ThemeProviderProps } from "next-themes";
 import * as React from "react";
 import { LuMoon, LuSun } from "react-icons/lu";
 
-export interface ColorModeProviderProps extends ThemeProviderProps {}
+export type ColorModeProviderProps = ThemeProviderProps;
 
 export function ColorModeProvider(props: ColorModeProviderProps) {
   return (
@@ -36,8 +36,10 @@ export function ColorModeIcon() {
   const { colorMode } = useColorMode();
   return colorMode === "light" ? <LuSun /> : <LuMoon />;
 }
-
-interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {}
+// tslint:disable-next-line:no-empty-interface
+interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {
+  colorMode?: "light" | "dark";
+}
 
 export const ColorModeButton = React.forwardRef<
   HTMLButtonElement,
