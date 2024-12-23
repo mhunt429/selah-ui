@@ -4,6 +4,7 @@ import { Provider } from "@/components/ui/provider";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginComponent from "./components/identity/LoginComponent";
 import MainLayout from "./components/shared/MainLayout";
+import AccountsComponent from "./components/identity/AccountsComponent";
 
 interface Props {
   children?: ReactNode;
@@ -37,6 +38,7 @@ const App: React.FC<Props> = () => {
                 <MainLayout>
                   <Routes>
                     <Route path="home" />
+                    <Route path="accounts" element={<AccountsComponent />} />
                   </Routes>
                 </MainLayout>
               }

@@ -21,6 +21,7 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { AppUser } from "@/data/appUser/appUser";
+import { Link } from "react-router-dom";
 
 type Props = {
   children: ReactNode;
@@ -70,35 +71,35 @@ const MainLayout: FC<Props> = ({ children }) => {
                   gap: "16px",
                 }}
               >
-                <a href="/home" style={linkStyle}>
+                <Link to="/home" style={linkStyle}>
                   <HiHome size={20} aria-hidden="true" />
                   <span style={textStyle}>Home</span>
-                </a>
+                </Link>
 
-                <a href="/transactions" style={linkStyle}>
+                <Link to="/transactions" style={linkStyle}>
                   <HiCreditCard size={20} aria-hidden="true" />
                   <span style={textStyle}>Transactions</span>
-                </a>
+                </Link>
 
-                <a href="/accounts" style={linkStyle}>
+                <Link to="/accounts" style={linkStyle}>
                   <HiCurrencyDollar size={20} aria-hidden="true" />
                   <span style={textStyle}>Accounts</span>
-                </a>
+                </Link>
 
-                <a href="/cashflow" style={linkStyle}>
+                <Link to="/cashflow" style={linkStyle}>
                   <HiOutlineTrendingUp size={20} aria-hidden="true" />
                   <span style={textStyle}>Cash Flow</span>
-                </a>
+                </Link>
 
-                <a href="/calendar" style={linkStyle}>
+                <Link to="/calendar" style={linkStyle}>
                   <HiCalendar size={20} aria-hidden="true" />
                   <span style={textStyle}>Calendar</span>
-                </a>
+                </Link>
 
-                <a href="/settings" style={linkStyle}>
+                <Link to="/settings" style={linkStyle}>
                   <MdManageAccounts size={20} aria-hidden="true" />
                   <span style={textStyle}>Account Settings</span>
-                </a>
+                </Link>
               </div>
             </DrawerBody>
             <DrawerFooter position="start">
