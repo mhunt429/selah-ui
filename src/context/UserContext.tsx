@@ -6,6 +6,7 @@ import React, {
   FC,
 } from "react";
 import { AppUser } from "@/data/appUser/appUser";
+import { useNavigate } from "react-router-dom";
 
 // Context Type definition
 interface UserContextType {
@@ -47,8 +48,13 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 
 export const userContext = (): UserContextType => {
   const context = useContext(UserContext);
+  const navigate = useNavigate();
   if (!context) {
-    throw new Error("useUser must be used within a UserProvider");
+    navigate("/login");
+    return {
+      user: null,
+      setUser: () => {},
+    };
   }
   return context;
 };
