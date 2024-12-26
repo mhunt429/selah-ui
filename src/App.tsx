@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginComponent from "./components/identity/LoginComponent";
 import MainLayout from "./components/shared/MainLayout";
 import AccountsComponent from "./components/identity/AccountsComponent";
+import { UserProvider } from "./context/UserContext";
 
 interface Props {
   children?: ReactNode;
@@ -29,22 +30,24 @@ const App: React.FC<Props> = () => {
   return (
     <ChakraProvider value={system}>
       <Provider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<LoginComponent />} />
-            <Route
-              path="/*"
-              element={
-                <MainLayout>
-                  <Routes>
-                    <Route path="home" />
-                    <Route path="accounts" element={<AccountsComponent />} />
-                  </Routes>
-                </MainLayout>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
+        <UserProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/login" element={<LoginComponent />} />
+              <Route
+                path="/*"
+                element={
+                  <MainLayout>
+                    <Routes>
+                      <Route path="home" />
+                      <Route path="accounts" element={<AccountsComponent />} />
+                    </Routes>
+                  </MainLayout>
+                }
+              />
+            </Routes>
+          </BrowserRouter>
+        </UserProvider>
       </Provider>
     </ChakraProvider>
   );
