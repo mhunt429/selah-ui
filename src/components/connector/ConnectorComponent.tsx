@@ -3,15 +3,22 @@ import { PlaidTokenHttpRequest } from "@/data/connector/PlaidLinkToken";
 import api from "@/utilities/api";
 import { FC } from "react";
 import { usePlaidLink } from "react-plaid-link";
+import { useNavigate, useParams } from "react-router-dom";
 
-type Props = {
-  linkToken: string;
-};
-
-const PlaidLinkComponent: FC<Props> = (props) => {
+export const ConnectorComponent: FC = () => {
+  const params = useParams();
   const { user } = userContext();
+  const navigate = useNavigate();
+
+  const linkToken = params.linkToken;
+
+  if (!linkToken) {
+    navigate("/accounts");
+    return;
+  }
+
   const { open } = usePlaidLink({
-    token: props.linkToken || "",
+    token: linkToken,
     onSuccess: (public_token, metadata) => {
       const tokenExchangeRequest: PlaidTokenHttpRequest = {
         publicToken: public_token,
@@ -25,7 +32,7 @@ const PlaidLinkComponent: FC<Props> = (props) => {
     },
   });
 
-  return <>{props.linkToken !== "" && open()}</>;
+  return <>{open}</>;
 };
 
-export default PlaidLinkComponent;
+export default ConnectorComponent;

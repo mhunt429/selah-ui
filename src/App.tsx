@@ -6,6 +6,7 @@ import LoginComponent from "./components/identity/LoginComponent";
 import MainLayout from "./components/shared/MainLayout";
 import AccountsComponent from "./components/identity/AccountsComponent";
 import { UserProvider } from "./context/UserContext";
+import ConnectorComponent from "./components/connector/ConnectorComponent";
 
 interface Props {
   children?: ReactNode;
@@ -41,6 +42,10 @@ const App: React.FC<Props> = () => {
                     <Routes>
                       <Route path="home" />
                       <Route path="accounts" element={<AccountsComponent />} />
+                      <Route
+                        path="connector"
+                        element={<ConnectorComponent />}
+                      />
                     </Routes>
                   </MainLayout>
                 }

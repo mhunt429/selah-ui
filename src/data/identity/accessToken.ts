@@ -1,19 +1,12 @@
-import { AppUser } from "../appUser/appUser";
-
-export interface AccessTokenRequest {
-  username: string;
+export type AccessTokenRequest = {
+  email: string;
   password: string;
-}
+};
 
-export interface TokenData {
+export type TokenData = {
   sessionId: string;
   accessToken: string;
   refreshToken: string;
   accessTokenExpiration: Date;
   refreshTokenExpiration: Date;
-}
-
-export interface AccessTokenResponse {
-  user: AppUser;
-  tokenData: TokenData;
-}
+};

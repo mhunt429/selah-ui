@@ -2,17 +2,15 @@ import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Flex, Card, Stack, useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
 import AppMainInput from "../shared/AppMainInput";
-import {
-  AccessTokenRequest,
-  AccessTokenResponse,
-} from "@/data/identity/accessToken";
+import { AccessTokenRequest, TokenData } from "@/data/identity/accessToken";
 import api from "@/utilities/api";
 import AppAlert from "../shared/AppAlert";
 import { useNavigate } from "react-router-dom";
 import AppPrimaryButton from "../shared/AppPrimaryButton";
+import { AppUser } from "@/data/appUser/appUser";
 
 const LoginComponent: React.FC = () => {
-  const [username, setUsername] = useState("");
+  const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -20,24 +18,26 @@ const LoginComponent: React.FC = () => {
 
   const handleLogin = async () => {
     const accessTokenRequest: AccessTokenRequest = {
-      username,
+      email,
       password,
     };
 
-    api
-      .post<AccessTokenResponse, AccessTokenRequest>(
+    try {
+      const tokenResponse = await api.post<TokenData, AccessTokenRequest>(
         "identity/login",
         accessTokenRequest
-      )
-      .then((tokenResponse) => {
-        sessionStorage.setItem(
-          "app_user",
-          JSON.stringify(tokenResponse.data.user)
-        );
+      );
+      console.log(tokenResponse.data);
+      sessionStorage.setItem("token", tokenResponse.data.data.accessToken);
 
-        navigate("/home");
-      })
-      .catch(() => setShowLoginError(true));
+      const currentUser = await api.get<AppUser>("identity/current-user");
+
+      sessionStorage.setItem("app_user", JSON.stringify(currentUser.data));
+      navigate("/home");
+    } catch (e) {
+      console.error(e);
+      setShowLoginError(true);
+    }
   };
   const handleErrorAlertClose = () => {
     setShowLoginError(false);
@@ -69,7 +69,7 @@ const LoginComponent: React.FC = () => {
               <AppMainInput
                 id="username"
                 type="text"
-                value={username}
+                value={email}
                 onChange={setUsername}
               />
             </FormControl>

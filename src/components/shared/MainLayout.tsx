@@ -13,7 +13,7 @@ import { IoPersonCircleSharp } from "react-icons/io5";
 import { HiHome } from "react-icons/hi";
 import { MdManageAccounts } from "react-icons/md";
 import { AppUser } from "@/data/appUser/appUser";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AppPrimaryButton from "./AppPrimaryButton";
 
 type Props = {
@@ -24,9 +24,15 @@ const MainLayout: FC<Props> = ({ children }) => {
   const [isSidenavOpen, setIsSidenavOpen] = useState(window.innerWidth >= 1000);
 
   const userSessionValue = sessionStorage.getItem("app_user") ?? "";
-  const appUser: AppUser = JSON.parse(userSessionValue);
+  const appUser: AppUser | undefined =
+    userSessionValue !== "" ? JSON.parse(userSessionValue) : undefined;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (!appUser) {
+      navigate("/login");
+    }
     const handleResize = () => {
       if (window.innerWidth < 1000) {
         setIsSidenavOpen(false); // Close sidenav for screens below 1000px
@@ -87,9 +93,12 @@ const MainLayout: FC<Props> = ({ children }) => {
         >
           {isSidenavOpen && (
             <Box>
-              <Box color="white" fontWeight="bold" mb={4}>
-                {appUser.firstName} {appUser.lastName}
-              </Box>
+              {appUser && (
+                <Box color="white" fontWeight="bold" mb={4}>
+                  {appUser.firstName} {appUser.lastName}
+                </Box>
+              )}
+
               <hr />
               <div
                 style={{

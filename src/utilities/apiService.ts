@@ -1,3 +1,4 @@
+import { BaseApiResponse } from "@/data/baseApiResponse";
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 class ApiService {
@@ -38,19 +39,19 @@ class ApiService {
   public get<T>(
     url: string,
     config?: AxiosRequestConfig
-  ): Promise<AxiosResponse<T>> {
-    return this.axiosInstance.get<T>(url, config);
+  ): Promise<AxiosResponse<BaseApiResponse<T>>> {
+    return this.axiosInstance.get<BaseApiResponse<T>>(url, config);
   }
 
-  public post<T, U>(
+  public post<T, U = any>(
     url: string,
     data?: U,
     config?: AxiosRequestConfig
-  ): Promise<AxiosResponse<T>> {
-    return this.axiosInstance.post<T>(url, data, config);
+  ): Promise<AxiosResponse<BaseApiResponse<T>>> {
+    return this.axiosInstance.post<BaseApiResponse<T>>(url, data, config);
   }
 
-  public put<T, U>(
+  public put<T, U = any>(
     url: string,
     data?: U,
     config?: AxiosRequestConfig
@@ -58,12 +59,11 @@ class ApiService {
     return this.axiosInstance.put<T>(url, data, config);
   }
 
-  // Generic DELETE request
   public delete<T>(
     url: string,
     config?: AxiosRequestConfig
-  ): Promise<AxiosResponse<T>> {
-    return this.axiosInstance.delete<T>(url, config);
+  ): Promise<AxiosResponse<BaseApiResponse<T>>> {
+    return this.axiosInstance.delete<BaseApiResponse<T>>(url, config);
   }
 }
 
