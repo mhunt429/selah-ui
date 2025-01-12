@@ -1,3 +1,4 @@
+import { userContext } from "@/context/UserContext";
 import { PlaidTokenHttpRequest } from "@/data/connector/PlaidLinkToken";
 import api from "@/utilities/api";
 import { FC } from "react";
@@ -8,11 +9,13 @@ type Props = {
 };
 
 const PlaidLinkComponent: FC<Props> = (props) => {
+  const { user } = userContext();
   const { open } = usePlaidLink({
     token: props.linkToken || "",
     onSuccess: (public_token, metadata) => {
       const tokenExchangeRequest: PlaidTokenHttpRequest = {
         publicToken: public_token,
+        userId: user?.id ?? "",
         institutionName: metadata.institution?.name ?? "",
         institutionId: metadata.institution?.institution_id ?? "",
       };

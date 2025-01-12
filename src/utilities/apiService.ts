@@ -43,7 +43,7 @@ class ApiService {
     return this.axiosInstance.get<BaseApiResponse<T>>(url, config);
   }
 
-  public post<T, U>(
+  public post<T, U = any>(
     url: string,
     data?: U,
     config?: AxiosRequestConfig
@@ -51,7 +51,7 @@ class ApiService {
     return this.axiosInstance.post<BaseApiResponse<T>>(url, data, config);
   }
 
-  public put<T, U>(
+  public put<T, U = any>(
     url: string,
     data?: U,
     config?: AxiosRequestConfig
