@@ -46,7 +46,7 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
   );
 };
 
-export const userContext = (): UserContextType => {
+export const AppUserContext = (): UserContextType => {
   const context = useContext(UserContext);
   const navigate = useNavigate();
   if (!context) {

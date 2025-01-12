@@ -1,5 +1,5 @@
-import React, { FC, ReactNode, useState, useEffect } from "react";
-import { Box, Flex, Button } from "@chakra-ui/react";
+import { FC, ReactNode, useState, useEffect } from "react";
+import { Box, Flex } from "@chakra-ui/react";
 import {
   HiArrowRight,
   HiCalendar,
@@ -12,9 +12,9 @@ import {
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { HiHome } from "react-icons/hi";
 import { MdManageAccounts } from "react-icons/md";
-import { AppUser } from "@/data/appUser/appUser";
 import { Link, useNavigate } from "react-router-dom";
 import AppPrimaryButton from "./AppPrimaryButton";
+import { AppUserContext } from "@/context/UserContext";
 
 type Props = {
   children: ReactNode;
@@ -22,15 +22,13 @@ type Props = {
 
 const MainLayout: FC<Props> = ({ children }) => {
   const [isSidenavOpen, setIsSidenavOpen] = useState(window.innerWidth >= 1000);
-
-  const userSessionValue = sessionStorage.getItem("app_user") ?? "";
-  const appUser: AppUser | undefined =
-    userSessionValue !== "" ? JSON.parse(userSessionValue) : undefined;
+  const { user } = AppUserContext();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!appUser) {
+    console.log(user);
+    if (!user) {
       navigate("/login");
     }
     const handleResize = () => {
@@ -93,9 +91,9 @@ const MainLayout: FC<Props> = ({ children }) => {
         >
           {isSidenavOpen && (
             <Box>
-              {appUser && (
+              {user && (
                 <Box color="white" fontWeight="bold" mb={4}>
-                  {appUser.firstName} {appUser.lastName}
+                  {user.firstName} {user.lastName}
                 </Box>
               )}
 
