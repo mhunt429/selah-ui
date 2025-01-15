@@ -5,6 +5,7 @@ import PlaidLinkComponent from "../shared/PlaidLinkComponent";
 import { EmptyState } from "@/components/ui/empty-state";
 import { useNavigate } from "react-router-dom";
 import { LinkTokenResponse } from "@/data/connector/PlaidLinkToken";
+import { Card, Flex } from "@chakra-ui/react";
 
 const AccountsComponent: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,16 +29,23 @@ const AccountsComponent: FC = () => {
 
   return (
     <div style={{ position: "relative", zIndex: 10 }}>
-      <EmptyState
-        title="You currently have no account data available."
-        description="Use the button below to link any accounts from your financial institutions."
-      >
-        <AppPrimaryButton
-          onClick={handleConnectAccountClick}
-          btnText={isLoading ? "Loading..." : "Import Accounts"}
-          // Ensure button is above overlay
-        />
-      </EmptyState>
+      <Flex justify="center" align="center" p={4}>
+        <Card.Root boxShadow={"md"}>
+          <Card.Body gap="2">
+            <EmptyState
+              title="You currently have no account data available."
+              description="Use the button below to link any accounts from your financial institutions."
+            >
+              <AppPrimaryButton
+                width="100%"
+                onClick={handleConnectAccountClick}
+                btnText={isLoading ? "Loading..." : "Import Account Data"}
+                // Ensure button is above overlay
+              />
+            </EmptyState>
+          </Card.Body>
+        </Card.Root>
+      </Flex>
 
       {isLoading ? null : <PlaidLinkComponent linkToken={linkToken} />}
     </div>

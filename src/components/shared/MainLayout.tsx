@@ -49,13 +49,17 @@ const MainLayout: FC<Props> = ({ children }) => {
 
   return (
     <Flex direction="column" height="100vh">
+      {/* Header */}
       <Box
         as="header"
-        bg="#111111"
         p={4}
         color="white"
-        zIndex={2} // Ensures the header stays on top of the sidenav
-        position="relative" // Makes sure header doesn't get overlapped
+        zIndex={2}
+        position="fixed"
+        top="0"
+        width="100%"
+        overflow="hidden"
+        boxShadow="lg"
       >
         <Flex direction="row" justifyContent="space-between" width="100%">
           <Box
@@ -72,16 +76,15 @@ const MainLayout: FC<Props> = ({ children }) => {
         </Flex>
       </Box>
 
-      <Flex flex="1" direction="row">
+      <Flex flex="1" direction="row" mt="60px" /* Adjust for header height */>
         {/* Sidenav */}
         <Box
+          m={2}
           as="nav"
           position="fixed"
           left="0"
-          top="0"
-          height="100vh"
+          height="calc(100vh - 60px)" // Account for the header height
           width={isSidenavOpen ? "250px" : "0"}
-          bg="#111111"
           color="white"
           overflow="hidden"
           transition="width 0.3s"
@@ -89,17 +92,10 @@ const MainLayout: FC<Props> = ({ children }) => {
           padding={isSidenavOpen ? "20px" : "0"}
           display="flex"
           flexDirection="column"
-          zIndex={1} // Ensures sidenav stays below the header
+          zIndex={1}
         >
           {isSidenavOpen && (
             <Box>
-              {appUser && (
-                <Box color="white" fontWeight="bold" mb={4}>
-                  {appUser.firstName} {appUser.lastName}
-                </Box>
-              )}
-
-              <hr />
               <div
                 style={{
                   display: "flex",
@@ -158,7 +154,7 @@ const MainLayout: FC<Props> = ({ children }) => {
           p={4}
           ml={isSidenavOpen ? "250px" : "0"}
           transition="margin-left 0.3s"
-          paddingLeft={isSidenavOpen ? "250px" : "0"}
+          mt="60px" // Adjust for header height
         >
           {children}
         </Box>
