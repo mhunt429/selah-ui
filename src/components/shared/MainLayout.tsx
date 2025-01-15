@@ -52,7 +52,7 @@ const MainLayout: FC<Props> = ({ children }) => {
       {/* Header */}
       <Box
         as="header"
-        p={4}
+        p={6}
         color="white"
         zIndex={2}
         position="fixed"
@@ -79,11 +79,11 @@ const MainLayout: FC<Props> = ({ children }) => {
       <Flex flex="1" direction="row" mt="60px" /* Adjust for header height */>
         {/* Sidenav */}
         <Box
-          m={2}
+          m={6}
           as="nav"
           position="fixed"
           left="0"
-          height="calc(100vh - 60px)" // Account for the header height
+          height="calc(100vh - 80px)" // Account for the header height
           width={isSidenavOpen ? "250px" : "0"}
           color="white"
           overflow="hidden"
