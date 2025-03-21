@@ -32,9 +32,9 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
   // Function to update user
   const updateUser = (newUser: AppUser | null) => {
     if (newUser) {
-      sessionStorage.setItem("user", JSON.stringify(newUser));
+      sessionStorage.setItem("app_user", JSON.stringify(newUser));
     } else {
-      sessionStorage.removeItem("user");
+      sessionStorage.removeItem("app_user");
     }
     setUser(newUser);
   };

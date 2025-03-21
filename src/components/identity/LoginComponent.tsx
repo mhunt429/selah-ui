@@ -27,12 +27,10 @@ const LoginComponent: React.FC = () => {
         "identity/login",
         accessTokenRequest
       );
-      console.log(tokenResponse.data);
       sessionStorage.setItem("token", tokenResponse.data.data.accessToken);
 
       const currentUser = await api.get<AppUser>("identity/current-user");
-
-      sessionStorage.setItem("app_user", JSON.stringify(currentUser.data));
+      sessionStorage.setItem("app_user", JSON.stringify(currentUser.data.data));
       navigate("/home");
     } catch (e) {
       console.error(e);

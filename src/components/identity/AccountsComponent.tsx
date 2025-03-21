@@ -1,7 +1,6 @@
 import api from "@/utilities/api";
 import { FC, useState } from "react";
 import AppPrimaryButton from "../shared/AppPrimaryButton";
-import PlaidLinkComponent from "../shared/PlaidLinkComponent";
 import { EmptyState } from "@/components/ui/empty-state";
 import { useNavigate } from "react-router-dom";
 import { LinkTokenResponse } from "@/data/connector/PlaidLinkToken";
@@ -18,6 +17,7 @@ const AccountsComponent: FC = () => {
     setIsLoading(true);
     try {
       const response = await api.get<LinkTokenResponse>("/connector/link");
+      console.log(response.data.data.link_token);
       setLinkToken(response.data.data.link_token);
       navigate(`/connector?linkToken=${response.data.data.link_token}`);
       setIsLoading(false);
@@ -40,14 +40,13 @@ const AccountsComponent: FC = () => {
                 width="100%"
                 onClick={handleConnectAccountClick}
                 btnText={isLoading ? "Loading..." : "Import Account Data"}
-                // Ensure button is above overlay
               />
             </EmptyState>
           </Card.Body>
         </Card.Root>
       </Flex>
 
-      {isLoading ? null : <PlaidLinkComponent linkToken={linkToken} />}
+      {isLoading ? null : <></>}
     </div>
   );
 };
